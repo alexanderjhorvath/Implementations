@@ -68,7 +68,7 @@
         signature = base64url(signature);
 
         document.getElementById("signature").innerText = signature;
-        document.getElementById("jwt").value = encodedHeader + "." + encodedData + "." signature;
+        document.getElementById("jwt").value = encodedHeader + encodedData + signature;
       }
     </script>
     <p>
