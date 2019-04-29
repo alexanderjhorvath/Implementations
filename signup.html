@@ -20,7 +20,57 @@
       <input type="button" value="Create JWT" onclick="createJWT(document.forms[0].firstname, document.forms[0].lastname, document.forms[0].email)">
     </form>
     <script>
-      const
+      function createJWT(firstName, lastName, email) {
+
+      var header = {
+        "alg": "HS256",
+        "typ": "JWT"
+      };
+
+      var data = {
+        "id": firstName + lastName,
+        "accountId": firstName + lastName,
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email
+      };
+
+      console.log(data);
+
+      var secret = "My very confidential secret!!!";
+
+function base64url(source) {
+  // Encode in classical base64
+  encodedSource = CryptoJS.enc.Base64.stringify(source);
+
+  // Remove padding equal characters
+  encodedSource = encodedSource.replace(/=+$/, '');
+
+  // Replace characters according to base64url specifications
+  encodedSource = encodedSource.replace(/\+/g, '-');
+  encodedSource = encodedSource.replace(/\//g, '_');
+
+  return encodedSource;
+}
+
+var stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header));
+var encodedHeader = base64url(stringifiedHeader);
+document.getElementById("header").innerText = encodedHeader;
+
+var stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
+var encodedData = base64url(stringifiedData);
+document.getElementById("payload").innerText = encodedData;
+
+var signature = encodedHeader + "." + encodedData;
+signature = CryptoJS.HmacSHA256(signature, secret);
+signature = base64url(signature);
+
+document.getElementById("signature").innerText = signature;
+}
     </script>
+    <p>
+      <strong>JSON Web Token:</strong><br/>
+      <span id="header"></span>.<span id="payload"></span>.<span id="signature"></span>
+    </p>
   </body>
 </html>
