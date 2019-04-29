@@ -39,7 +39,7 @@
 
         console.log(data);
 
-        var secret = "My very confidential secret!!!";
+        var secret = "TEST_SvWffF45v18CFsD4sWGgu6z1fOzkkxJ5";
 
         function base64url(source) {
           // Encode in classical base64
@@ -68,7 +68,7 @@
         signature = base64url(signature);
 
         document.getElementById("signature").innerText = signature;
-        document.getElementById("jwt").value = "test";
+        document.getElementById("jwt").value = encodedHeader + "." + encodedData + "." + signature;
       }
     </script>
     <p>
