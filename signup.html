@@ -17,56 +17,58 @@
       <input type="text" name="email" id="email">
       <label for="referralcode">Referral Code</label>
       <input type="text" name="referralcode" id="referralcode" value="">
+      <label for="jwt">JWT</label>
+      <input type="text" name="jwt" value="" disabled="disabled">
       <input type="button" value="Create JWT" onclick="createJWT(document.forms[0].firstname.value, document.forms[0].lastname.value, document.forms[0].email.value)">
     </form>
     <script>
       function createJWT(firstName, lastName, email) {
-        console.log("this is the first name " + firstName + " last name: " + lastName + " and email: " + email);
 
-      var header = {
-        "alg": "HS256",
-        "typ": "JWT"
-      };
+        var header = {
+          "alg": "HS256",
+          "typ": "JWT"
+        };
 
-      var data = {
-        "id": firstName + lastName,
-        "accountId": firstName + lastName,
-        "firstName": firstName,
-        "lastName": lastName,
-        "email": email
-      };
+        var data = {
+          "id": firstName + lastName,
+          "accountId": firstName + lastName,
+          "firstName": firstName,
+          "lastName": lastName,
+          "email": email
+        };
 
-      console.log(data);
+        console.log(data);
 
-      var secret = "My very confidential secret!!!";
+        var secret = "My very confidential secret!!!";
 
-      function base64url(source) {
-        // Encode in classical base64
-        encodedSource = CryptoJS.enc.Base64.stringify(source);
+        function base64url(source) {
+          // Encode in classical base64
+          encodedSource = CryptoJS.enc.Base64.stringify(source);
 
-        // Remove padding equal characters
-        encodedSource = encodedSource.replace(/=+$/, '');
+          // Remove padding equal characters
+          encodedSource = encodedSource.replace(/=+$/, '');
 
-        // Replace characters according to base64url specifications
-        encodedSource = encodedSource.replace(/\+/g, '-');
-        encodedSource = encodedSource.replace(/\//g, '_');
+          // Replace characters according to base64url specifications
+          encodedSource = encodedSource.replace(/\+/g, '-');
+          encodedSource = encodedSource.replace(/\//g, '_');
 
-        return encodedSource;
-      }
+          return encodedSource;
+        }
 
-      var stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header));
-      var encodedHeader = base64url(stringifiedHeader);
-      document.getElementById("header").innerText = encodedHeader;
+        var stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header));
+        var encodedHeader = base64url(stringifiedHeader);
+        document.getElementById("header").innerText = encodedHeader;
 
-      var stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
-      var encodedData = base64url(stringifiedData);
-      document.getElementById("payload").innerText = encodedData;
+        var stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
+        var encodedData = base64url(stringifiedData);
+        document.getElementById("payload").innerText = encodedData;
 
-      var signature = encodedHeader + "." + encodedData;
-      signature = CryptoJS.HmacSHA256(signature, secret);
-      signature = base64url(signature);
+        var signature = encodedHeader + "." + encodedData;
+        signature = CryptoJS.HmacSHA256(signature, secret);
+        signature = base64url(signature);
 
-      document.getElementById("signature").innerText = signature;
+        document.getElementById("signature").innerText = signature;
+        document.getElementById("jwt").value = encodedHeader + "." + encodedData + "." signature;
       }
     </script>
     <p>
