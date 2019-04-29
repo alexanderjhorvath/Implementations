@@ -17,7 +17,7 @@
       <input type="text" name="email" id="email">
       <label for="referralcode">Referral Code</label>
       <input type="text" name="referralcode" id="referralcode" value="">
-      <input type="button" value="Create JWT" onclick="createJWT(document.forms[0].firstname, document.forms[0].lastname, document.forms[0].email)">
+      <input type="button" value="Create JWT" onclick="createJWT(document.forms[0].firstname.value, document.forms[0].lastname.value, document.forms[0].email.value)">
     </form>
     <script>
       function createJWT(firstName, lastName, email) {
