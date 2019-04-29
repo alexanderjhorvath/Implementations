@@ -18,7 +18,7 @@
       <label for="referralcode">Referral Code</label>
       <input type="text" name="referralcode" id="referralcode" value="">
       <label for="jwt">JWT</label>
-      <input type="text" name="jwt" value="" disabled="disabled">
+      <input type="text" name="jwt" id="jwt" value="" disabled="disabled">
       <input type="button" value="Create JWT" onclick="createJWT(document.forms[0].firstname.value, document.forms[0].lastname.value, document.forms[0].email.value)">
     </form>
     <script>
@@ -68,7 +68,7 @@
         signature = base64url(signature);
 
         document.getElementById("signature").innerText = signature;
-        document.getElementById("jwt").value = encodedHeader + encodedData + signature;
+        document.getElementById("jwt").value = "test";
       }
     </script>
     <p>
