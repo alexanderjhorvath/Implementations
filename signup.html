@@ -57,23 +57,16 @@
 
         var stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header));
         var encodedHeader = base64url(stringifiedHeader);
-        document.getElementById("header").innerText = encodedHeader;
 
         var stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
         var encodedData = base64url(stringifiedData);
-        document.getElementById("payload").innerText = encodedData;
 
         var signature = encodedHeader + "." + encodedData;
         signature = CryptoJS.HmacSHA256(signature, secret);
         signature = base64url(signature);
 
-        document.getElementById("signature").innerText = signature;
         document.getElementById("jwt").value = encodedHeader + "." + encodedData + "." + signature;
       }
     </script>
-    <p>
-      <strong>JSON Web Token:</strong><br/>
-      <span id="header"></span>.<span id="payload"></span>.<span id="signature"></span>
-    </p>
   </body>
 </html>
