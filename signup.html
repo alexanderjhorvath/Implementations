@@ -6,7 +6,8 @@
   </head>
   <body>
     <script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha256.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
+    <script>!function(a,b){a("squatch","https://d2rcp9ak152ke1.cloudfront.net/assets/javascripts/v2/squatch.min.js",b)}(function(a,b,c){var d,e,f;c["_"+a]={},c[a]={},c[a].ready=function(b){c["_" + a].ready =  c["_" + a].ready || [];c["_" + a].ready.push(b);},e=document.createElement("script"),e.async=1,e.src=b,f=document.getElementsByTagName("script")[0],f.parentNode.insertBefore(e,f)},this);</script>
     <h2>Sign up for an account!</h2>
     <form action="" method="GET">
       <label for="firstname">First Name</label>
@@ -22,6 +23,15 @@
       <input type="button" value="Create JWT" onclick="createJWT(document.forms[0].firstname.value, document.forms[0].lastname.value, document.forms[0].email.value, document.forms[0].referralcode.value)">
     </form>
     <script>
+      window.squatch.ready(function(){
+
+        squatch.init({
+          tenantAlias: 'test_ak9p2wojhmti6'
+        });
+
+        squatch.autofill('referralcode');
+        
+      });
       function createJWT(firstName, lastName, email, referralCode) {
 
         var header = {
