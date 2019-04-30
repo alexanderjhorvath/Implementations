@@ -11,15 +11,15 @@
     <h2>Sign up for an account!</h2>
     <form action="complete.html" method="GET">
       <label for="firstname">First Name</label>
-      <input type="text" name="firstname" id="firstname">
+      <input type="text" name="firstname" id="firstname"><br>
       <label for="lastname">Last Name</label>
-      <input type="text" name="lastname" id="lastname">
+      <input type="text" name="lastname" id="lastname"><br>
       <label for="email">Email Address</label>
-      <input type="text" name="email" id="email">
+      <input type="text" name="email" id="email"><br>
       <label for="referralcode">Referral Code</label>
-      <input type="text" name="referralcode" id="referralcode" value="">
+      <input type="text" name="referralcode" id="referralcode" value=""><br>
       <label for="jwt">JWT</label>
-      <input type="text" name="jwt" id="jwt" value="">
+      <input type="text" name="jwt" id="jwt" value=""><br>
       <input type="button" value="Create JWT" onclick="createJWT(document.forms[0].firstname.value, document.forms[0].lastname.value, document.forms[0].email.value, document.forms[0].referralcode.value)">
       <input type="submit" name="Let's Go!">
     </form>
