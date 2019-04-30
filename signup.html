@@ -69,7 +69,9 @@
         signature = CryptoJS.HmacSHA256(signature, secret);
         signature = base64url(signature);
 
-        document.getElementById("jwt").value = encodedHeader + "." + encodedData + "." + signature;
+        var jwt = encodedHeader + "." + encodedData + "." + signature;
+
+        document.getElementById("jwt").value = jwt;
       }
     </script>
   </body>
