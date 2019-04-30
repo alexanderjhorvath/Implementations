@@ -28,7 +28,7 @@
           jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiQWxleEJhc2UiLCJhY2NvdW50SWQiOiJBbGV4QmFzZSIsImVtYWlsIjoidGFudG91c2hhQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkFsZXgiLCJsYXN0TmFtZSI6IkJhc2UifX0.zqshZqtPn5KGUDl4B8uR8Nr-wtHDz9nqQjC9DvolsM0'
         };
 
-        squatch.api().upsertUser(initObj).then(function(response) {
+        squatch.widgets().upsertUser(initObj).then(function(response) {
           user = response.user;
         }).catch(function(error){
           console.log(error);
