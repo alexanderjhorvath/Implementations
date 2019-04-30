@@ -19,10 +19,10 @@
       <input type="text" name="referralcode" id="referralcode" value="">
       <label for="jwt">JWT</label>
       <input type="text" name="jwt" id="jwt" value="" disabled="disabled">
-      <input type="button" value="Create JWT" onclick="createJWT(document.forms[0].firstname.value, document.forms[0].lastname.value, document.forms[0].email.value)">
+      <input type="button" value="Create JWT" onclick="createJWT(document.forms[0].firstname.value, document.forms[0].lastname.value, document.forms[0].email.value, document.forms[0].referralcode.value)">
     </form>
     <script>
-      function createJWT(firstName, lastName, email) {
+      function createJWT(firstName, lastName, email, referralCode) {
 
         var header = {
           "alg": "HS256",
@@ -34,7 +34,11 @@
           "accountId": firstName + lastName,
           "firstName": firstName,
           "lastName": lastName,
-          "email": email
+          "email": email,
+          "referredBy": {
+            "isConverted": true,
+            "code": referralCode
+          }
         };
 
         console.log(data);
