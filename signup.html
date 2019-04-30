@@ -42,14 +42,16 @@
         };
 
         var data = {
-          "id": firstName + lastName,
-          "accountId": firstName + lastName,
-          "firstName": firstName,
-          "lastName": lastName,
-          "email": email,
-          "referredBy": {
-            "isConverted": true,
-            "code": referralCode
+          "user": {
+            "id": firstName + lastName,
+            "accountId": firstName + lastName,
+            "firstName": firstName,
+            "lastName": lastName,
+            "email": email,
+            "referredBy": {
+              "isConverted": true,
+              "code": referralCode
+            }
           }
         };
 
