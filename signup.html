@@ -9,7 +9,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
     <script>!function(a,b){a("squatch","https://d2rcp9ak152ke1.cloudfront.net/assets/javascripts/v2/squatch.min.js",b)}(function(a,b,c){var d,e,f;c["_"+a]={},c[a]={},c[a].ready=function(b){c["_" + a].ready =  c["_" + a].ready || [];c["_" + a].ready.push(b);},e=document.createElement("script"),e.async=1,e.src=b,f=document.getElementsByTagName("script")[0],f.parentNode.insertBefore(e,f)},this);</script>
     <h2>Sign up for an account!</h2>
-    <form action="" method="GET">
+    <form action="complete.html" method="GET">
       <label for="firstname">First Name</label>
       <input type="text" name="firstname" id="firstname">
       <label for="lastname">Last Name</label>
@@ -21,6 +21,7 @@
       <label for="jwt">JWT</label>
       <input type="text" name="jwt" id="jwt" value="" disabled="disabled">
       <input type="button" value="Create JWT" onclick="createJWT(document.forms[0].firstname.value, document.forms[0].lastname.value, document.forms[0].email.value, document.forms[0].referralcode.value)">
+      <input type="submit" name="Let's Go!">
     </form>
     <script>
       window.squatch.ready(function(){
