@@ -7,6 +7,7 @@
   </head>
   <body>
 <h1>Thank you for signing up!</h1>
+<button class="squatchpop">Referral Discount</button>
 <script>
   var getQueryString = function ( field, url ) {
     var href = url ? url : window.location.href;
@@ -23,6 +24,37 @@
   console.log("This should be the email: " + email);
   console.log("This should be the first name: " + fname);
   console.log("This should be the code: " + referralCode);
+
+  window.squatch.ready(function (){
+
+    squatch.init({
+      tenantAlias: ''
+    })
+
+    var initObj = {
+
+      user: {
+        id: fname + lname,
+        accountId: fname + lname,
+        email: email,
+        firstName: fname,
+        lastName: lname,
+        referredBy: {
+          code: referralCode,
+          isConverted: true
+        },
+        engagementMedium: POPUP,
+        widgetType: 'REFERRER_WIDGET',
+        jwt: jwt
+      }
+    };
+
+    squatch.widgets().upsertUser(initObj).then(function(response) {
+      user = repsonse.user;
+    }).catch(function(error){
+      console.log(error);
+    });
+  });
 
 </script>
   </body>
