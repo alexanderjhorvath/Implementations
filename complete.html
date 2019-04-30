@@ -49,6 +49,8 @@
       }
     };
 
+    console.log(jwt);
+
     squatch.widgets().upsertUser(initObj).then(function(response) {
       user = repsonse.user;
     }).catch(function(error){
