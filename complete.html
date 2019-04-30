@@ -50,7 +50,7 @@
     };
 
     console.log("This is the JWT: " + jwt);
-    console.log("This is the JWT on user: " + user.jwt);
+    console.log("This is the JWT on user: " + initObj.user.jwt);
 
     squatch.widgets().upsertUser(initObj).then(function(response) {
       user = repsonse.user;
