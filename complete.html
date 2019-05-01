@@ -44,13 +44,11 @@
           isConverted: true
         },
         engagementMedium: 'POPUP',
-        widgetType: 'REFERRER_WIDGET',
-        jwt: jwt
+        widgetType: 'REFERRER_WIDGET'
       }
     };
 
     console.log("This is the JWT: " + jwt);
-    console.log("This is the JWT on user: " + initObj.user.jwt);
 
     squatch.widgets().upsertUser(initObj).then(function(response) {
       user = repsonse.user;
