@@ -6,59 +6,59 @@
     <title>Registration Complete!</title>
   </head>
   <body>
-<h1>Thank you for signing up!</h1>
-<button class="squatchpop">Referral Discount</button>
-<script>
-  var getQueryString = function ( field, url ) {
-    var href = url ? url : window.location.href;
-    var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
-    var string = reg.exec(href);
-    return string ? string[1] : null;
-  };
-  //pull information from form fields
-  email = decodeURIComponent(getQueryString('email'));
-  fname = decodeURIComponent(getQueryString('firstname'));
-  lname = decodeURIComponent(getQueryString('lastname'));
-  jwt = decodeURIComponent(getQueryString('jwt'));
-  referralCode = decodeURIComponent(getQueryString('referralcode'));
-  console.log("This should be the email: " + email);
-  console.log("This should be the first name: " + fname);
-  console.log("This should be the code: " + referralCode);
+    <h1>Thank you for signing up!</h1>
+    <button class="squatchpop">Referral Discount</button>
+    <script>
+      var getQueryString = function ( field, url ) {
+        var href = url ? url : window.location.href;
+        var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+        var string = reg.exec(href);
+        return string ? string[1] : null;
+      };
+      //pull information from form fields
+      email = decodeURIComponent(getQueryString('email'));
+      fname = decodeURIComponent(getQueryString('firstname'));
+      lname = decodeURIComponent(getQueryString('lastname'));
+      jwt = decodeURIComponent(getQueryString('jwt'));
+      referralCode = decodeURIComponent(getQueryString('referralcode'));
+      console.log("This should be the email: " + email);
+      console.log("This should be the first name: " + fname);
+      console.log("This should be the code: " + referralCode);
 
-  window.squatch.ready(function (){
+      window.squatch.ready(function (){
 
-    squatch.init({
-      tenantAlias: 'test_ak9p2wojhmti6'
-    })
+        squatch.init({
+          tenantAlias: 'test_ak9p2wojhmti6'
+        })
 
-    var initObj = {
+        var initObj = {
 
-      user: {
-        id: fname + lname,
-        accountId: fname + lname,
-        email: email,
-        firstName: fname,
-        lastName: lname,
-        referredBy: {
-          code: referralCode,
-          isConverted: true
-        },
-      },
-      engagementMedium: 'POPUP',
-      widgetType: 'REFERRER_WIDGET',
-      jwt: jwt
-    };
+          user: {
+            id: fname + lname,
+            accountId: fname + lname,
+            email: email,
+            firstName: fname,
+            lastName: lname,
+            referredBy: {
+              code: referralCode,
+              isConverted: true
+            },
+          },
+          engagementMedium: 'POPUP',
+          widgetType: 'REFERRER_WIDGET',
+          jwt: jwt
+        };
 
-    console.log("This is the JWT: " + jwt);
-    console.log(initObj.user);
+        console.log("This is the JWT: " + jwt);
+        console.log(initObj.user);
 
-    squatch.widgets().upsertUser(initObj).then(function(response) {
-      user = repsonse.user;
-    }).catch(function(error){
-      console.log(error);
-    });
-  });
+        squatch.widgets().upsertUser(initObj).then(function(response) {
+          user = repsonse.user;
+        }).catch(function(error){
+          console.log(error);
+        });
+      });
 
-</script>
+    </script>
   </body>
 </html>
