@@ -21,7 +21,6 @@
       <label for="jwt">JWT</label>
       <input readonly type="text" name="jwt" id="jwt" value=""><br>
       <input type="button" value="Create JWT" onclick="createJWT(document.forms[0].firstname.value, document.forms[0].lastname.value, document.forms[0].email.value, document.forms[0].referralcode.value)">
-      <input type="button" value="Create JSON for API" onclick="createJSON(document.forms[0].firstname.value, document.forms[0].lastname.value, document.forms[0].email.value, document.forms[0].referralcode.value, document.forms[0].jwt.value)">
       <input type="submit" name="Let's Go!">
     </form>
     <p>
@@ -37,27 +36,6 @@
         squatch.autofill('#referralcode');
 
       });
-
-      function createJSON(firstName, lastName, email, referralCode, jwt) {
-
-        var account = {
-          "id": firstName + lastName,
-          "accountId": firstName + lastName,
-          "email": email,
-          "firstName": firstName,
-          "lastName": lastName,
-          "referredBy": {
-            "code": referralCode,
-            "isConverted": true
-          }
-        };
-
-        console.log(account);
-
-        const dataContainer = document.getElementById("json")[0];
-
-        dataContainer.textContent = JSON.stringify(account, null, " ");
-      };
 
       function createJWT(firstName, lastName, email, referralCode) {
 
