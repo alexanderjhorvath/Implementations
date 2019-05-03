@@ -53,7 +53,10 @@
         };
 
         console.log(account);
-        document.getElementById("json").value = account;
+
+        const dataContainer = document.getElementById("json")[0];
+
+        dataContainer.textContent = JSON.stringify(account, null, " ");
       };
 
       function createJWT(firstName, lastName, email, referralCode) {
