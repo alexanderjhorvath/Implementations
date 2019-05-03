@@ -21,11 +21,9 @@
       <label for="jwt">JWT</label>
       <input readonly type="text" name="jwt" id="jwt" value=""><br>
       <input type="button" value="Create JWT" onclick="createJWT(document.forms[0].firstname.value, document.forms[0].lastname.value, document.forms[0].email.value, document.forms[0].referralcode.value)">
-      <input type="submit" name="Let's Go!">
+      <input type="submit">
     </form>
     <p>
-    <h3>JSON for API appear below:</h3><br>
-    <code id="json"></code>
     <script>
       window.squatch.ready(function(){
 
