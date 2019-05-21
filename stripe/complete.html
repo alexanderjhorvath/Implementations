@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script>!function(a,b){a("squatch","https://d2rcp9ak152ke1.cloudfront.net/assets/javascripts/v2/squatch.min.js",b)}(function(a,b,c){var d,e,f;c["_"+a]={},c[a]={},c[a].ready=function(b){c["_" + a].ready =  c["_" + a].ready || [];c["_" + a].ready.push(b);},e=document.createElement("script"),e.async=1,e.src=b,f=document.getElementsByTagName("script")[0],f.parentNode.insertBefore(e,f)},this);</script>
+    <title>Registration Complete!</title>
+  </head>
+  <body>
+    <h1>Thank you for signing up!</h1>
+    <a href="myaccount.html" onclick="location.href=this.href+'?email='+email+'&firstname='+fname+'&lastname='+lname+'&jwt='+jwt;return false;">My Account Page</a><p>
+    <button class="squatchpop">Referral Discount</button>
+    <script>
+      var getQueryString = function ( field, url ) {
+        var href = url ? url : window.location.href;
+        var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+        var string = reg.exec(href);
+        return string ? string[1] : null;
+      };
+      //pull information from form fields
+      email = decodeURIComponent(getQueryString('email'));
+      fname = decodeURIComponent(getQueryString('firstname'));
+      lname = decodeURIComponent(getQueryString('lastname'));
+      jwt = decodeURIComponent(getQueryString('jwt'));
+      referralCode = decodeURIComponent(getQueryString('referralcode'));
+      console.log("This should be the email: " + email);
+      console.log("This should be the first name: " + fname);
+      console.log("This should be the code: " + referralCode);
+
+      window.squatch.ready(function (){
+
+        squatch.init({
+          tenantAlias: 'test_au3748w68ujj7'
+        })
+
+        var initObj = {
+
+          user: {
+            id: fname + lname,
+            accountId: fname + lname,
+            email: email,
+            firstName: fname,
+            lastName: lname,
+            referredBy: {
+              code: referralCode,
+              isConverted: true
+            },
+          },
+          engagementMedium: 'POPUP',
+          widgetType: 'REFERRER_WIDGET',
+          jwt: jwt
+        };
+
+        console.log("This is the JWT: " + jwt);
+        console.log(initObj.user);
+
+        squatch.widgets().upsertUser(initObj).then(function(response) {
+          user = repsonse.user;
+        }).catch(function(error){
+          console.log(error);
+        });
+      });
+
+    </script>
+  </body>
+</html>

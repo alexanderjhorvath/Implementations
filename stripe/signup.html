@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Account Signup!</title>
+  </head>
+  <body>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha256.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
+<script>!function(a,b){a("squatch","https://d2rcp9ak152ke1.cloudfront.net/assets/javascripts/v2/squatch.min.js",b)}(function(a,b,c){var d,e,f;c["_"+a]={},c[a]={},c[a].ready=function(b){c["_" + a].ready =  c["_" + a].ready || [];c["_" + a].ready.push(b);},e=document.createElement("script"),e.async=1,e.src=b,f=document.getElementsByTagName("script")[0],f.parentNode.insertBefore(e,f)},this);</script>
+    <h2>Sign up for an account!</h2>
+    <form action="complete.html" method="GET">
+      <label for="firstname">First Name</label>
+      <input type="text" name="firstname" id="firstname"><br>
+      <label for="lastname">Last Name</label>
+      <input type="text" name="lastname" id="lastname"><br>
+      <label for="email">Email Address</label>
+      <input type="text" name="email" id="email"><br>
+      <label for="referralcode">Referral Code</label>
+      <input type="text" name="referralcode" id="referralcode" value=""><br>
+      <label for="jwt">JWT</label>
+      <input readonly type="text" name="jwt" id="jwt" value=""><br>
+      <input type="button" value="Create JWT" onclick="createJWT(document.forms[0].firstname.value, document.forms[0].lastname.value, document.forms[0].email.value, document.forms[0].referralcode.value)">
+      <input type="submit">
+    </form>
+    <p>
+    <script>
+      window.squatch.ready(function(){
+
+        squatch.init({
+          tenantAlias: 'test_au3748w68ujj7'
+        });
+
+        squatch.autofill('#referralcode');
+
+      });
+
+      function createJWT(firstName, lastName, email, referralCode) {
+
+        var header = {
+          "alg": "HS256",
+          "typ": "JWT"
+        };
+
+        var data = {
+          "user": {
+            "id": firstName + lastName,
+            "accountId": firstName + lastName,
+            "firstName": firstName,
+            "lastName": lastName,
+            "email": email,
+            "referredBy": {
+              "code": referralCode,
+              "isConverted": true
+            }
+          }
+        };
+
+        var secret = "TEST_ZyCn1EaQfbJYy4IEBHWSHQoiZtzp74oC";
+
+        function base64url(source) {
+          // Encode in classical base64
+          encodedSource = CryptoJS.enc.Base64.stringify(source);
+
+          // Remove padding equal characters
+          encodedSource = encodedSource.replace(/=+$/, '');
+
+          // Replace characters according to base64url specifications
+          encodedSource = encodedSource.replace(/\+/g, '-');
+          encodedSource = encodedSource.replace(/\//g, '_');
+
+          return encodedSource;
+        }
+
+        var stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header));
+        var encodedHeader = base64url(stringifiedHeader);
+
+        var stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
+        var encodedData = base64url(stringifiedData);
+
+        var signature = encodedHeader + "." + encodedData;
+        signature = CryptoJS.HmacSHA256(signature, secret);
+        signature = base64url(signature);
+
+        var jwt = encodedHeader + "." + encodedData + "." + signature;
+
+        document.getElementById("jwt").value = jwt;
+      }
+    </script>
+  </body>
+</html>
